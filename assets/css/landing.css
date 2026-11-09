@@ -1,0 +1,171 @@
+/* Landing page TiketLokal. Motif: tiket sobek (stub) dengan takik di garis potong. */
+:root {
+  --ink: #141a3a;
+  --indigo: #1e2a78;
+  --indigo-deep: #121a52;
+  --marigold: #f6b93b;
+  --marigold-deep: #e39e12;
+  --teal: #0f8f80;
+  --paper: #f4f6fb;
+  --white: #ffffff;
+  --line: #d8ddee;
+  --muted: #565f84;
+  --notch: 10px;
+  --radius: 14px;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body.landing {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: 1rem; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.landing a { color: inherit; text-decoration: none; }
+.landing h1, .landing h2, .landing h3 { font-family: var(--font-display); line-height: 1.1; margin: 0; letter-spacing: -0.02em; }
+.landing :focus-visible { outline: 3px solid var(--marigold); outline-offset: 2px; border-radius: 6px; }
+.wrap { width: min(1160px, 100% - 2rem); margin-inline: auto; }
+
+/* ---------- Tombol ---------- */
+.btn-l {
+  display: inline-flex; align-items: center; gap: .5rem; border: 2px solid transparent;
+  padding: .6rem 1.15rem; border-radius: 999px; font: 600 .95rem var(--font-body);
+  cursor: pointer; transition: background-color .15s, color .15s, border-color .15s; white-space: nowrap;
+}
+.btn-l.is-solid { background: var(--marigold); color: var(--ink); }
+.btn-l.is-solid:hover { background: var(--marigold-deep); }
+.btn-l.is-line { border-color: currentColor; background: transparent; }
+.btn-l.is-line:hover { background: rgba(255,255,255,.12); }
+.btn-l.is-ink { background: var(--indigo); color: #fff; }
+.btn-l.is-ink:hover { background: var(--indigo-deep); }
+.btn-l.is-small { padding: .35rem .85rem; font-size: .85rem; }
+.btn-l[disabled] { background: #e6e9f4; color: #8a92b4; cursor: not-allowed; }
+
+/* ---------- Navbar ---------- */
+.topbar { position: sticky; top: 0; z-index: 20; background: var(--indigo-deep); color: #fff; }
+.topbar .wrap { display: flex; align-items: center; gap: 1rem; min-height: 4rem; }
+.brand { display: inline-flex; align-items: center; gap: .6rem; font: 800 1.25rem var(--font-display); letter-spacing: -0.02em; }
+.brand-mark { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 9px; background: var(--marigold); color: var(--ink); font-size: 1.1rem; transform: rotate(-8deg); }
+.nav-links { display: none; gap: 1.5rem; margin-left: 1.5rem; font-weight: 500; color: #c9d0f5; }
+.nav-links a:hover { color: #fff; }
+.nav-actions { margin-left: auto; display: flex; align-items: center; gap: .5rem; }
+.nav-user { display: none; color: #c9d0f5; font-size: .9rem; margin-right: .25rem; }
+@media (min-width: 760px) { .nav-links, .nav-user { display: inline-flex; } }
+
+/* ---------- Hero ---------- */
+.hero { background: var(--indigo-deep); color: #fff; padding: 3rem 0 5.5rem; overflow: hidden; }
+.hero .wrap { display: grid; gap: 3rem; align-items: center; }
+.hero h1 { font-size: clamp(2.3rem, 6vw, 4.1rem); font-weight: 800; max-width: 14ch; }
+.hero p.lead { margin: 1.25rem 0 2rem; max-width: 46ch; font-size: 1.1rem; color: #c9d0f5; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+@media (min-width: 960px) { .hero .wrap { grid-template-columns: 1.05fr 1fr; } .hero { padding: 4.5rem 0 7rem; } }
+
+/* Tiket besar di hero: satu-satunya elemen yang "bersuara" */
+.big-ticket {
+  position: relative; display: grid; grid-template-columns: 1fr 7.5rem; overflow: hidden;
+  background: var(--white); color: var(--ink); border-radius: 20px;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.55);
+  transform: rotate(-2.5deg); animation: tiket-masuk .7s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes tiket-masuk { from { opacity: 0; transform: translateY(24px) rotate(-6deg); } to { opacity: 1; transform: rotate(-2.5deg); } }
+.big-ticket .t-main { padding: 1.6rem 1.6rem 1.4rem; display: flex; flex-direction: column; gap: .7rem; }
+.big-ticket h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; }
+.t-meta { display: grid; gap: .25rem; color: var(--muted); font-size: .95rem; }
+.t-meta i { color: var(--teal); margin-right: .4rem; }
+.t-price { margin-top: auto; padding-top: .5rem; display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
+.t-price small { display: block; color: var(--muted); font-size: .8rem; }
+.t-price strong { font: 800 1.6rem var(--font-display); }
+.barcode { height: 2.2rem; margin-top: .4rem; opacity: .85;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 10px, var(--ink) 10px 13px, transparent 13px 15px); }
+
+.stub {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  background: var(--marigold); color: var(--ink); padding: 1rem .5rem; border-left: 2px dashed rgba(20,26,58,.35);
+}
+.stub .d-label { font-size: .75rem; font-weight: 600; }
+.stub .d-day { font: 800 3rem/1 var(--font-display); letter-spacing: -0.04em; }
+.stub .d-mon { font: 700 1.1rem var(--font-display); }
+.stub .d-year { font-size: .8rem; opacity: .75; }
+.stub::before, .stub::after {
+  content: ""; position: absolute; left: calc(var(--notch) * -1); width: calc(var(--notch) * 2); height: calc(var(--notch) * 2);
+  border-radius: 50%; background: var(--notch-bg, var(--indigo-deep));
+}
+.stub::before { top: calc(var(--notch) * -1); }
+.stub::after { bottom: calc(var(--notch) * -1); }
+
+/* ---------- Bagian event ---------- */
+.section { padding: 4.5rem 0; }
+.section-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.25rem; margin-bottom: 2rem; }
+.section-head h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; }
+.section-head p { margin: .5rem 0 0; color: var(--muted); max-width: 52ch; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip { border: 1.5px solid var(--line); background: var(--white); color: var(--ink); border-radius: 999px; padding: .35rem .95rem; font: 600 .9rem var(--font-body); cursor: pointer; }
+.chip:hover { border-color: var(--indigo); }
+.chip[aria-pressed="true"] { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+
+.grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr)); }
+.ticket {
+  position: relative; display: grid; grid-template-columns: 1fr 6.5rem; overflow: hidden;
+  background: var(--white); border: 1.5px solid var(--line); border-radius: var(--radius);
+  transition: border-color .15s, box-shadow .15s;
+}
+.ticket:hover { border-color: var(--indigo); box-shadow: 0 10px 28px -14px rgba(30,42,120,.45); }
+.ticket .stub { --notch-bg: var(--paper); background: var(--indigo); color: #fff; border-left: 2px dashed rgba(255,255,255,.35); padding: 1rem .4rem; }
+.ticket .stub::before, .ticket .stub::after { border: 1.5px solid var(--line); }
+.ticket .d-day { font-size: 2.4rem; }
+.ticket .d-mon { color: var(--marigold); }
+.ticket .d-year { color: #c9d0f5; }
+.ticket .d-label { color: #c9d0f5; }
+.t-body { padding: 1.25rem 1.25rem 1.1rem; display: flex; flex-direction: column; gap: .6rem; min-width: 0; }
+.t-top { display: flex; flex-wrap: wrap; gap: .4rem; }
+.tag { display: inline-block; padding: .1rem .6rem; border-radius: 999px; font-size: .78rem; font-weight: 600; background: #e8ebf8; color: var(--indigo); }
+.tag.is-live { background: #d8f3ee; color: #0a6b5f; }
+.ticket h3 { font-size: 1.35rem; font-weight: 700; }
+.ticket .desc { margin: 0; color: var(--muted); font-size: .95rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ticket .t-meta { font-size: .9rem; }
+.tix { list-style: none; margin: .4rem 0 0; padding: 0; border-top: 1.5px dashed var(--line); }
+.tix li { display: flex; align-items: center; gap: .75rem; padding: .6rem 0; border-bottom: 1px solid #eef0f8; }
+.tix li:last-child { border-bottom: 0; padding-bottom: 0; }
+.tix .nm { font-weight: 600; flex: 1 1 auto; min-width: 0; }
+.tix .nm small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; }
+.tix .nm small.low { color: #b4570a; font-weight: 600; }
+.tix .hg { font: 700 1rem var(--font-display); white-space: nowrap; }
+
+@media (max-width: 560px) {
+  .ticket, .big-ticket { grid-template-columns: 1fr; }
+  .stub { order: -1; flex-direction: row; gap: .6rem; padding: .7rem 1rem; border-left: 0; border-bottom: 2px dashed rgba(255,255,255,.35); justify-content: flex-start; }
+  .big-ticket .stub { border-bottom-color: rgba(20,26,58,.35); }
+  .stub .d-day { font-size: 1.8rem; } .ticket .d-day { font-size: 1.8rem; }
+  .stub::before, .stub::after { top: auto; bottom: calc(var(--notch) * -1); }
+  .stub::before { left: calc(var(--notch) * -1); }
+  .stub::after { left: auto; right: calc(var(--notch) * -1); }
+  .big-ticket { transform: none; animation: none; }
+}
+.kosong { padding: 3rem 1rem; text-align: center; color: var(--muted); border: 2px dashed var(--line); border-radius: var(--radius); }
+
+/* ---------- Cara memesan ---------- */
+.steps-band { background: var(--white); border-block: 1.5px solid var(--line); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 2rem; counter-reset: s; }
+.steps li { position: relative; padding-left: 4.2rem; counter-increment: s; }
+.steps li::before {
+  content: counter(s); position: absolute; left: 0; top: -.2rem; width: 3.1rem; height: 3.1rem; display: grid; place-items: center;
+  border-radius: 50%; background: var(--marigold); font: 800 1.5rem var(--font-display);
+}
+.steps h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: .25rem; }
+.steps p { margin: 0; color: var(--muted); max-width: 34ch; }
+@media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---------- Footer & flash ---------- */
+.foot { background: var(--indigo-deep); color: #c9d0f5; padding: 2.5rem 0; }
+.foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; }
+.foot .brand { color: #fff; }
+.flash { background: #d8f3ee; color: #0a5c51; border-bottom: 1px solid #aee3d9; padding: .7rem 0; font-weight: 500; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .big-ticket { animation: none; }
+  .btn-l, .ticket { transition: none; }
+}
+.landing [hidden] { display: none !important; }

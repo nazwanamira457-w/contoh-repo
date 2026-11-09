@@ -1,0 +1,14 @@
+/* Tambahan kecil di atas template adminHMD */
+.stock-bar { height: 6px; min-width: 90px; }
+.total-box { background: var(--bs-tertiary-bg, #f4f6fa); border-radius: .75rem; padding: 1rem 1.25rem; }
+.total-box .total-value { font-size: 1.75rem; font-weight: 700; }
+.table-actions form { display: inline; }
+.struk dt { font-weight: 500; color: var(--bs-secondary-color, #6c757d); }
+@media print {
+  .admin-sidebar, .admin-navbar, .admin-footer, .heading-actions, .no-print, .sidebar-backdrop { display: none !important; }
+  .admin-main { margin: 0 !important; padding: 0 !important; width: 100% !important; }
+  .panel { box-shadow: none !important; border: 1px solid #ccc !important; }
+}
+
+.metric-value { white-space: nowrap; font-size: clamp(1.4rem, 2.2vw, 2rem); }
+.badge { white-space: nowrap; }
